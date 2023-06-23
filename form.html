@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <style>
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 30px;
+      border-radius: 5px;
+      background-color: #05e2ee91;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container input[type=text], .container input[type=email], .container input[type=password] {
+      width: 90%;
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 0px;
+      background-color: #ffffff;
+      font-size: 16px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .container input[type=submit] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 0px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .container input[type=submit]:hover {
+      background-color: #45a049;
+    }
+
+    .container h2 {
+      text-align: center;
+      color: #333333;
+      margin-bottom: 20px;
+    }
+
+    #display-data {
+      margin-top: 20px;
+      display: none;
+    }
+
+    #display-data table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    #display-data th, #display-data td {
+      border: 1px solid #cccccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    #display-data th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #display-data td:first-child {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    #display-data td:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    #display-data td:nth-child(odd) {
+      background-color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Registration Form</h2>
+    <form id="registration-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" required>
+
+      <input type="submit" value="Submit">
+    </form>
+    <div id="display-data">
+      <h2>Entered Data:</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody id="data-table"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('registration-form');
+    const displayData = document.getElementById('display-data');
+    const dataTable = document.getElementById('data-table');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); 
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const newRow = document.createElement('tr');
+      const nameCell = document.createElement('td');
+      nameCell.textContent = name;
+      const emailCell = document.createElement('td');
+      emailCell.textContent = email;
+      newRow.appendChild(nameCell);
+      newRow.appendChild(emailCell);
+      dataTable.appendChild(newRow);
+      form.reset();
+      displayData.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
